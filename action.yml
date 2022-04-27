@@ -1,5 +1,5 @@
-name: 'Run Pylint with reviewdog'
-description: '🐶 Run Pylint with reviewdog on pull requests to improve code review experience.'
+name: 'Run bandit with reviewdog'
+description: '🐶 Run bandit with reviewdog on pull requests to improve code review experience.'
 author: 'dciborow'
 inputs:
   github_token:
@@ -28,9 +28,9 @@ inputs:
   reviewdog_flags:
     description: 'Additional reviewdog flags'
     default: ''
-  pylint_rc:
-    description: '.pylintrc configuration file'
-    default: '.pylintrc'
+  bandit_config:
+    description: 'Bandit configuration file'
+    default: 'pyproject.toml'
 runs:
   using: "composite"
   steps:
@@ -38,7 +38,6 @@ runs:
       shell: bash
       env:
         INPUT_WORKDIR: ${{ inputs.workdir }}
-        INPUT_FLAKE8_ARGS: ${{ inputs.flake8_Args }}
         INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
         INPUT_TOOL_NAME: ${{ inputs.tool_name }}
         INPUT_LEVEL: ${{ inputs.level }}
@@ -46,7 +45,7 @@ runs:
         INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
         INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
-        INPUT_PYLINT_RC: ${{ inputs.pylint_rc }}
+        INPUT_BANDIT_CONFIG: ${{ inputs.bandit_config }}
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 # TODO: update branding if you want.
