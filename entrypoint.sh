@@ -9,19 +9,19 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 export REVIEWDOG_VERSION=v0.13.0
 
-echo "[action-pylint] Installing reviewdog..."
+echo "[action-bandit] Installing reviewdog..."
 wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp "${REVIEWDOG_VERSION}"
 
-if [[ "$(which pylint)" == "" ]]; then
-  echo "[action-pylint] Installing pylint package..."
-  python -m pip install --upgrade pylint
+if [[ "$(which bandit)" == "" ]]; then
+  echo "[action-bandit] Installing bandit package..."
+  python -m pip install --upgrade bandit
 fi
-echo "[action-pylint] pylint version:"
-pylint --version
+echo "[action-bandit] bandit version:"
+bandit --version
 
-echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
+echo "[action-bandit] Checking python code with the bandit linter and reviewdog..."
 exit_val="0"
-pylint --rcfile "${INPUT_PYLINT_RC}" -s n . 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
+bandit --rcfile "${INPUT_bandit_RC}" -s n . 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
   /tmp/reviewdog -efm="%f:%l:%c: %m" \
     -name="${INPUT_TOOL_NAME}" \
     -reporter="${INPUT_REPORTER}" \
@@ -30,7 +30,7 @@ pylint --rcfile "${INPUT_PYLINT_RC}" -s n . 2>&1 | # Removes ansi codes see http
     -level="${INPUT_LEVEL}" \
     ${INPUT_REVIEWDOG_FLAGS} || exit_val="$?"
 
-echo "[action-pylint] Clean up reviewdog..."
+echo "[action-bandit] Clean up reviewdog..."
 rm /tmp/reviewdog
 
 if [[ "${exit_val}" -ne '0' ]]; then
