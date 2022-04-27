@@ -51,4 +51,4 @@ runs:
 # TODO: update branding if you want.
 branding:
   icon: 'check'
-  color: 'blue'
+  color: 'red'
