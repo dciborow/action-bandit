@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   test-check:
-    name: runner / pylint (github-check)
+    name: runner / bandit (github-check)
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,7 +28,7 @@ jobs:
 
   test-pr-check:
     if: github.event_name == 'pull_request'
-    name: runner / pylint (github-pr-check)
+    name: runner / bandit (github-pr-check)
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -50,7 +50,7 @@ jobs:
 
   test-pr-review:
     if: github.event_name == 'pull_request'
-    name: runner / pylint (github-pr-review)
+    name: runner / bandit (github-pr-review)
     runs-on: ubuntu-latest
     strategy:
       matrix:
