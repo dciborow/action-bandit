@@ -1,12 +1,12 @@
-# action-pylint
-[![Test](https://github.com/dciborow/action-pylint/workflows/Test/badge.svg)](https://github.com/dciborow/action-pylint/actions?query=workflow%3ATest)
-[![reviewdog](https://github.com/dciborow/action-pylint/workflows/reviewdog/badge.svg)](https://github.com/dciborow/action-pylint/actions?query=workflow%3Areviewdog)
-[![depup](https://github.com/dciborow/action-pylint/workflows/depup/badge.svg)](https://github.com/dciborow/action-pylint/actions?query=workflow%3Adepup)
-[![release](https://github.com/dciborow/action-pylint/workflows/release/badge.svg)](https://github.com/dciborow/action-pylint/actions?query=workflow%3Arelease)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/dciborow/action-pylint?logo=github&sort=semver)](https://github.com/dciborow/action-pylint/releases)
+# action-bandit
+[![Test](https://github.com/dciborow/action-bandit/workflows/Test/badge.svg)](https://github.com/dciborow/action-bandit/actions?query=workflow%3ATest)
+[![reviewdog](https://github.com/dciborow/action-bandit/workflows/reviewdog/badge.svg)](https://github.com/dciborow/action-bandit/actions?query=workflow%3Areviewdog)
+[![depup](https://github.com/dciborow/action-bandit/workflows/depup/badge.svg)](https://github.com/dciborow/action-bandit/actions?query=workflow%3Adepup)
+[![release](https://github.com/dciborow/action-bandit/workflows/release/badge.svg)](https://github.com/dciborow/action-bandit/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/dciborow/action-bandit?logo=github&sort=semver)](https://github.com/dciborow/action-bandit/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
-This repo contains a action to run [pylint](https://pypi.org/project/pylint).
+This repo contains a action to run [bandit](https://pypi.org/project/bandit).
 
 ## Input
 
@@ -46,12 +46,12 @@ inputs:
 name: reviewdog
 on: [pull_request]
 jobs:
-  pylint:
-    name: runner / pylint
+  bandit:
+    name: runner / bandit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: dciborow/action-pylint@v1
+      - uses: dciborow/action-bandit@v1
         with:
           github_token: ${{ secrets.github_token }}
           # Change reviewdog reporter if you need [github-pr-check,github-check,github-pr-review].
