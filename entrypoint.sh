@@ -14,7 +14,7 @@ bandit --version
 
 echo "[action-bandit] Checking python code with the bandit linter..."
 exit_val="0"
-bandit --configfile "${INPUT_BANDIT_CONFIG}" . 2>&1
+bandit --configfile "${INPUT_BANDIT_CONFIG}"
 
 echo "[action-bandit] Clean up..."
 
